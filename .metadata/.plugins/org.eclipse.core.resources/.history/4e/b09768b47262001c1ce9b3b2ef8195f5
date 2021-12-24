@@ -1,0 +1,85 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+
+
+
+
+
+public class MyTests {
+
+	private static Path getFilePath(String path) {
+        if ("/".equals(path)) {
+            path = "index.html";
+        }
+        return Paths.get("", path);
+    }
+	
+	
+	private static List<Integer> findImageSources(String textString, String word) {
+	    List<Integer> indexes = new ArrayList<Integer>();
+	    StringBuilder output = new StringBuilder();
+	    String lowerCaseTextString = textString.toLowerCase();
+	    String lowerCaseWord = word.toLowerCase();
+	    int wordLength = 0;
+
+	    int index = 0;
+	    while(index != -1){
+	        index = lowerCaseTextString.indexOf(lowerCaseWord, index + wordLength);  // Slight improvement
+	        if (index != -1) {
+	            indexes.add(index);
+	        }
+	        wordLength = word.length();
+	    }
+	    return indexes;
+	}
+	
+	
+	
+	public static void main(String[] args) throws IOException {
+//		String appStartUpPath = System.getProperty("user.dir") + "\\";
+//		Path filePath = getFilePath(appStartUpPath + "index.html");
+//		byte[] bytes = Files.readAllBytes(filePath);
+//		String s = new String(bytes, StandardCharsets.UTF_8);
+//		String wordToFind = "img src=";
+//		List<Integer> arrayList = findImageSources(s, wordToFind);
+//		for (int i = 0; i < arrayList.size(); i++) {
+//			int el = arrayList.get(i);
+//			arrayList.set(i, el + wordToFind.length()+1);
+//		}
+//		for (int i = 0; i < arrayList.size(); i++) {
+//			int index = s.indexOf("\"", arrayList.get(i));
+//			String file = s.substring(arrayList.get(i) + "images".length() + 1, index );
+//			byte[] img = Files.readAllBytes(Paths.get(appStartUpPath + "images\\" + file));
+//			String str = Base64.getEncoder().encodeToString(img);
+//			s = s.replace("images/"+file, str); 
+//		}
+//		
+//		BufferedWriter writer = new BufferedWriter(new FileWriter("test.txt"));
+//	    writer.write(s);
+//	    
+//	    writer.close();
+		Runnable runnableTask = () -> {
+		        System.out.println("Hello, task!");
+		   
+		};
+		ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(0);
+		scheduledExecutorService.scheduleWithFixedDelay(runnableTask, 1, 2, TimeUnit.MINUTES);
+		
+		
+		
+	}
+
+}

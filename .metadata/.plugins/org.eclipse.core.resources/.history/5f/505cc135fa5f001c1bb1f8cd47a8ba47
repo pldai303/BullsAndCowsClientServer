@@ -1,0 +1,41 @@
+//---------10.12
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+public class Competition implements Serializable{
+
+	private ArrayList<User> competitionParticipants = new ArrayList<>();
+	private boolean competitionFinished;
+	private int valueToGuess;
+	private int competitionDuration;
+	private int oneGameMaxDuration;
+	private int count;
+	
+	public Competition() {
+		this.competitionFinished = false;
+		count = 0;
+	}
+	
+	
+	public void finishCompetition() {
+		this.competitionFinished = true;
+	}
+	
+	public ArrayList<User> getCompetitionParticipants() {
+		return competitionParticipants;
+	}
+	
+	public void addParticipant(User user) {
+		competitionParticipants.add(user);
+		count++;
+		
+	}
+	
+	public Integer getParticipantsCount() {
+		return count;
+	}
+	
+	
+	
+}

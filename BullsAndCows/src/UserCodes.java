@@ -1,0 +1,4 @@
+
+public enum UserCodes {
+OK, ALREADY_EXISTS, NOT_FOUND, GAME_NOT_FINISHED, NOT_EXISTS
+}

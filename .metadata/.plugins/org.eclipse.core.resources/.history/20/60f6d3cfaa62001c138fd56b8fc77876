@@ -1,0 +1,49 @@
+//---------10.12
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+public class Competition implements Serializable{
+
+	private ArrayList<User> competitionParticipants = new ArrayList<>();
+	private boolean competitionFinished;
+	private String compName;
+	private Integer compId;
+	
+	public Competition(String compName, Integer compId) {
+		this.competitionFinished = false;
+		this.compName = compName;
+		this.compId = compId;
+	}
+	
+	
+	public void finishCompetition() {
+		this.competitionFinished = true;
+	}
+	
+	public ArrayList<User> getCompetitionParticipants() {
+		return competitionParticipants;
+	}
+	
+	public void addParticipant(User user) throws Exception{
+		for (User u : competitionParticipants) {
+			if (u.getId() == user.getId()) {
+				throw new Exception("This user already takes part in this competition!");
+			}
+		}
+		competitionParticipants.add(user);
+		competitionParticipants.stream().forEach(n -> System.out.println(n.getId() + " " + n.getName()));
+	}
+	
+	public Integer getCompetitionId() {
+		return compId;
+	}
+	
+	public String getCompetitionName() {
+		return compName;
+	}
+
+	
+	
+	
+}

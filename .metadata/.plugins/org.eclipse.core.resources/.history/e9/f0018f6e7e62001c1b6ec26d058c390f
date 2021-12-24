@@ -1,0 +1,135 @@
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+
+
+class Task implements Callable<String> 
+{
+    private final String name;
+ 
+    public Task(String name) {
+        this.name = name;
+        System.out.println("Task " + this.name + " was started at " + LocalDateTime.now().toString());
+    }
+ 
+    @Override
+    public String call() throws Exception {
+        return "Task [" + name + "] executed on : " + LocalDateTime.now().toString();
+    }
+}
+
+
+class MySheduler {
+
+	public MySheduler() {
+		// TODO Auto-generated constructor stub
+	}
+	
+}
+
+
+public class MyTests {
+
+	private static Path getFilePath(String path) {
+        if ("/".equals(path)) {
+            path = "index.html";
+        }
+        return Paths.get("", path);
+    }
+	
+	
+	private static List<Integer> findImageSources(String textString, String word) {
+	    List<Integer> indexes = new ArrayList<Integer>();
+	    StringBuilder output = new StringBuilder();
+	    String lowerCaseTextString = textString.toLowerCase();
+	    String lowerCaseWord = word.toLowerCase();
+	    int wordLength = 0;
+
+	    int index = 0;
+	    while(index != -1){
+	        index = lowerCaseTextString.indexOf(lowerCaseWord, index + wordLength);  // Slight improvement
+	        if (index != -1) {
+	            indexes.add(index);
+	        }
+	        wordLength = word.length();
+	    }
+	    return indexes;
+	}
+	
+	
+	public static int i = 0;
+	
+	public static void main(String[] args) throws IOException {
+//		String appStartUpPath = System.getProperty("user.dir") + "\\";
+//		Path filePath = getFilePath(appStartUpPath + "index.html");
+//		byte[] bytes = Files.readAllBytes(filePath);
+//		String s = new String(bytes, StandardCharsets.UTF_8);
+//		String wordToFind = "img src=";
+//		List<Integer> arrayList = findImageSources(s, wordToFind);
+//		for (int i = 0; i < arrayList.size(); i++) {
+//			int el = arrayList.get(i);
+//			arrayList.set(i, el + wordToFind.length()+1);
+//		}
+//		for (int i = 0; i < arrayList.size(); i++) {
+//			int index = s.indexOf("\"", arrayList.get(i));
+//			String file = s.substring(arrayList.get(i) + "images".length() + 1, index );
+//			byte[] img = Files.readAllBytes(Paths.get(appStartUpPath + "images\\" + file));
+//			String str = Base64.getEncoder().encodeToString(img);
+//			s = s.replace("images/"+file, str); 
+//		}
+//		
+//		BufferedWriter writer = new BufferedWriter(new FileWriter("test.txt"));
+//	    writer.write(s);
+//	    
+//	    writer.close();
+		
+		LocalDateTime startPoint = LocalDateTime.now();
+		
+		ArrayList<>
+		
+		LocalDateTime.parse(str, DateTimeFormatter.ofPattern(formatPattern))
+		
+		
+		
+		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        List<ScheduledFuture<String>> results = new ArrayList<ScheduledFuture<String>>();
+ 
+        for (int i = 1; i <= 5; i++) 
+        {
+            Task task = new Task("Task-" + i);
+            ScheduledFuture<String> result = executor.schedule(task, 10,  TimeUnit.SECONDS);
+            //results.add(result)
+            try {
+				System.out.println(result.get());
+			} catch (Exception e) {
+		
+			} 
+        }
+         
+        executor.shutdown();
+         
+        try { 
+            executor.awaitTermination(1, TimeUnit.DAYS); 
+             
+            for(ScheduledFuture<String> result : results) {
+                System.out.println(result.get());
+            }
+             
+        } catch (Exception e) { 
+            e.printStackTrace(); 
+        }
+    
+		
+	}
+
+}

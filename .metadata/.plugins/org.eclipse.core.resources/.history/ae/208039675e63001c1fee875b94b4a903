@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+
+public class CompetitionObject {
+
+	Integer compId;
+	String userName;
+	Integer gameId;
+	Integer movesCount;
+	ArrayList<String> history;
+	
+	public CompetitionObject(Integer compId, String userName, Integer gameId, Integer movesCount, ArrayList<String> history) {
+	this.compId = compId;
+	this.userName = userName;
+	this.gameId = gameId;
+	this.movesCount = movesCount;
+	this.history = history;
+	}
+	
+	
+	
+}
